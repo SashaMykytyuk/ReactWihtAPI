@@ -6,12 +6,11 @@ class App extends React.Component {
         ccy: [],
         summ: {},
         isLoad: false
-        //buyOrSale: {}
     }
 
     componentDidMount() {
         this.setState({ isLoad: true });
-        fetch("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
+        fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
             .then(Response => {
                 if (Response.status === 200) {
                     return Response.json();
@@ -19,7 +18,7 @@ class App extends React.Component {
             })
             .then(data => {
                 this.setState({ ccy: data });
-                console.log(`ccy `, data);
+                //console.log(`ccy `, data);
                 this.setState({ isLoad: false });
             })
             .catch(error => {
@@ -47,15 +46,12 @@ class App extends React.Component {
         }
     }
 
-
-    // onSelectBuyOrSale = (selectBuyOrSale) =>{
-    //     this.setState({ buyOrSale: selectBuyOrSale.target.value })
-    // } 
-
+    onChangeValue = () =>{
+        alert('click on the image');
+    }
 
 
     render() {
-        //const isLoad = this.state.isLoad;
         const { isLoad } = this.state;
         const options = this.state.ccy.map((c) => {
             return (
@@ -68,62 +64,50 @@ class App extends React.Component {
                     <h2>КОНВЕРТЕР ВАЛЮТ</h2>
                 </div>
 
-                <div class="row" >
-                    <div class="col-md-2 mb-2">
-                        <label for="i_change">Міняю</label>
-                        <input type="text" id='i_change' class='form-control' onChange={this.onHandlerChange}/>
-                        {isLoad && <span>Loading</span>}
-                            {!isLoad &&
-                                <select onChange={this.onHandlerChangeSelect}>
-                                    <option></option>
-                                    {options}
-                                </select>
-                            }
-                        {/* <div class="invalid-feedback">
-                            Valid first name is required.
-                            </div> */}
-                    </div>
-                    <div>
-                        <img src="https://finance.liga.net/design/images/icons/converter-min-arr.png" />
-                    </div>
 
-                    <div class="col-md-2 mb-2">
-                        <label for="i_get">Отримую</label>
-                        <input type="text" class="form-control" readOnly='true' id="i_get" />
+                <div class='row'>
+                    <div class='col-5'>
+                        <label>Міняю</label>
+                    </div>
+                    <div class='col-2'>
+                        <label>Отримую</label>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-2'>
+                        <input type='text' id='i_change' class='form-control' onChange={this.onHandlerChange} />
+                    </div>
+                    <div class='col-2'>
                         {isLoad && <span>Loading</span>}
-                            {!isLoad &&
-                                <select onChange={this.onHandlerChangeSelect}>
-                                    <option></option>
-                                    {options}
-                                </select>
-                            }
-                        {/* <div class="invalid-feedback">
-                            Valid last name is required.
-                            </div> */}
+                        {!isLoad &&
+                            <select class='form-control' onChange={this.onHandlerChangeSelect}>
+                                <option></option>
+                                {options}
+                            </select>
+                        }
+                    </div>
+                    <div class='col-1'>
+                        <img src='https://finance.liga.net/design/images/icons/converter-min-arr.png' onMouseDown={this.onChangeValue} />
+                    </div>
+                    <div class='col-2'>
+                        <input type='text' id='i_get' class='form-control' readOnly='true' />
+                    </div>
+                    <div class='col-2'>
+                        {isLoad && <span>Loading</span>}
+                        {!isLoad &&
+                            <select class='form-control' onChange={this.onHandlerChangeSelect}>
+                                <option></option>
+                                {options}
+                            </select>
+                        }
                     </div>
                 </div>
             </div>
         );
-        }
-
     }
 
-
-
-
-                    {/* <div>
-                                <label className='label'>input sum</label>
-                            <input type='text' onChange={this.onHandlerChange}></input>
-                            {isLoad && <span>Loading</span>}
-                            {!isLoad &&
-                                <select onChange={this.onHandlerChangeSelect}>
-                                    <option></option>
-                                    {options}
-                                </select>
-                            }
-                            */}
-
-
+}
 
 
 export default App;
