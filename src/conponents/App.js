@@ -5,20 +5,21 @@ class App extends React.Component {
     state = {
         ccy: [],
         summ: {},
-        isLoad: false
-
+        isLoad: false,
+        buyOrSale: {}
     }
 
     componentDidMount() {
         this.setState({ isLoad: true });
         fetch("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
             .then(Response => {
-                if (Response.status == 200) {
+                if (Response.status === 200) {
                     return Response.json();
                 }
             })
             .then(data => {
                 this.setState({ ccy: data });
+                console.log(`ccy `, data);
                 this.setState({ isLoad: false });
             })
             .catch(error => {
@@ -28,13 +29,31 @@ class App extends React.Component {
     }
 
     onHandlerChange = (inputData) => {
+        console.log(`inputDate: ${inputData.target.value}`)
         this.setState({ summ: inputData.target.value })
     }
 
 
-    onHandlerChangeSelect = (inputData) => {
-       
+    onHandlerChangeSelect = (seletData) => {
+        const val = seletData.target.value;
+        const find = this.state.ccy.find((item) => item.ccy === val);
+        if(find)
+        {
+            if(this.state.buyOrSale === 'buy'){
+                console.log(this.state.summ * find.buy);
+            }
+            else{
+                console.log(this.state.summ * find.sale);
+            }
+        }
     }
+
+
+    onSelectBuyOrSale = (selectBuyOrSale) =>{
+        this.setState({ buyOrSale: selectBuyOrSale.target.value })
+    } 
+
+
 
     render() {
         //const isLoad = this.state.isLoad;
@@ -45,12 +64,10 @@ class App extends React.Component {
             );
         });
         return (
-            <div>
+            <div className='container'>
+                
                 <div>
-                    <h1>Hello</h1>
-                </div>
-                <div>
-                    <label>Summ grn</label>
+                    <label className='label'>input sum</label>
                     <input type='text' onChange={this.onHandlerChange}></input>
                     {isLoad && <span>Loading</span>}
                     {!isLoad &&
@@ -59,7 +76,10 @@ class App extends React.Component {
                             {options}
                         </select>
                     }
-
+                    <select onChange = {this.onSelectBuyOrSale}>
+                        <option>buy</option>
+                        <option>sale</option>
+                    </select>
                 </div>
             </div>
         );
