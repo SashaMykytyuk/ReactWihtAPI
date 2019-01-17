@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class App extends React.Component {
+class About extends React.Component {
 
 
     render() {
@@ -11,7 +11,7 @@ class App extends React.Component {
                 
                 
                 <div className='text-center'>
-                    <h2>Hello in App</h2>
+                    <h2>Hello in About</h2>
                 </div>
                 {this.props.children}
             </div>
@@ -21,4 +21,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default About;

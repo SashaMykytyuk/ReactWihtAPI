@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-import A from"./conponents/App";
+import {Router, browserHistory} from 'react-router';
+import routes from './routes';
 
 
 
 
-ReactDOM.render(<A />, document.getElementById('root'));
+ReactDOM.render(<Router history={browserHistory} routes={routes} />, document.getElementById('root'));
 
