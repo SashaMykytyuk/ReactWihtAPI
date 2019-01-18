@@ -84,7 +84,7 @@ class Home extends React.Component {
                         }
                     </div>
                     <div class='col-1'>
-                        <img src='https://finance.liga.net/design/images/icons/converter-min-arr.png' onMouseDown={this.onChangeValue} />
+                        <img alt='' src='https://finance.liga.net/design/images/icons/converter-min-arr.png' onMouseDown={this.onChangeValue} />
                     </div>
                     <div class='col-2'>
                         <input type='text' id='i_get' class='form-control' readOnly='true' value={this.state.calculation} />

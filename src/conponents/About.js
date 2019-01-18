@@ -11,7 +11,7 @@ class About extends React.Component {
                 
                 
                 <div className='text-center'>
-                    <h2>Hello in About</h2>
+                    <h2>Hello in About page</h2>
                 </div>
                 {this.props.children}
             </div>

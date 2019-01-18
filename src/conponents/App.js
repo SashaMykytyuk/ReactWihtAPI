@@ -8,8 +8,6 @@ class App extends React.Component {
 
         return (
             <div className='container'>
-                
-                
                 <div className='text-center'>
                     <h2>Hello in App</h2>
                 </div>
