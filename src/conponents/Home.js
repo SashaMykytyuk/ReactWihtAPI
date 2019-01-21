@@ -61,38 +61,38 @@ class Home extends React.Component {
                 </div>
 
 
-                <div class='row'>
-                    <div class='col-5'>
+                <div className='row'>
+                    <div className='col-5'>
                         <label>Міняю</label>
                     </div>
-                    <div class='col-2'>
+                    <div className='col-2'>
                         <label>Отримую</label>
                     </div>
                 </div>
 
-                <div class='row'>
-                    <div class='col-2'>
-                        <input type='text' id='i_change' class='form-control' onChange={this.onHandlerChange} />
+                <div className='row'>
+                    <div className='col-2'>
+                        <input type='text' id='i_change' className='form-control' onChange={this.onHandlerChange} />
                     </div>
-                    <div class='col-2'>
+                    <div className='col-2'>
                         {isLoad && <span>Loading</span>}
                         {!isLoad &&
-                            <select class='form-control' onChange={this.onHandlerChangeSelect}>
+                            <select className='form-control' onChange={this.onHandlerChangeSelect}>
                                 <option></option>
                                 {options}
                             </select>
                         }
                     </div>
-                    <div class='col-1'>
+                    <div className='col-1'>
                         <img alt='' src='https://finance.liga.net/design/images/icons/converter-min-arr.png' onMouseDown={this.onChangeValue} />
                     </div>
-                    <div class='col-2'>
-                        <input type='text' id='i_get' class='form-control' readOnly='true' value={this.state.calculation} />
+                    <div className='col-2'>
+                        <input type='text' id='i_get' className='form-control' readOnly='true' value={this.state.calculation} />
                     </div>
-                    <div class='col-2'>
+                    <div className='col-2'>
                         {isLoad && <span>Loading</span>}
                         {!isLoad &&
-                            <select class='form-control'>
+                            <select className='form-control'>
                                 <option></option>
                                 {options}
                             </select>
