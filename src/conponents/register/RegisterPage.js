@@ -25,10 +25,10 @@ class RegisterPage extends React.Component {
     }
 
     handleSubmit=(e)=> {
-        // console.log('The value is: ' , this.state);
+         console.log('The value is: ' , this.state);
         e.preventDefault();
 
-        fetch('', {
+        fetch('http://localhost:51034/api/Account/Register', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -36,7 +36,7 @@ class RegisterPage extends React.Component {
             },
             body: JSON.stringify(this.state)
         })
-            
+            .then(res=>res.status === 200)
             .then(res => res.json())
             .then(res => {
                 this.setState({ isLoading: false });
@@ -47,11 +47,11 @@ class RegisterPage extends React.Component {
     }
 
     render() {
-        if (this.state.isLoading) {
-            return (
-                <h1>loading...</h1>
-            )
-        }
+        // if (this.state.isLoading) {
+        //     return (
+        //         <h1>loading...</h1>
+        //     )
+        // }
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="container">
