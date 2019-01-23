@@ -7,10 +7,9 @@ class RegisterPage extends React.Component {
 
         this.state = {
             isLoading: true,
-            userName: '',
             email: '',
             password: '',
-            passwordConfirm: ''
+            confirmPassword: ''
         }
 
         this.onHandlerChange = this.onHandlerChange.bind(this);
@@ -24,8 +23,8 @@ class RegisterPage extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit=(e)=> {
-         console.log('The value is: ' , this.state);
+    handleSubmit = (e) => {
+        console.log('The value is: ', this.state);
         e.preventDefault();
 
         fetch('http://localhost:51034/api/Account/Register', {
@@ -36,11 +35,14 @@ class RegisterPage extends React.Component {
             },
             body: JSON.stringify(this.state)
         })
-            .then(res=>res.status === 200)
+            .then(res => res.status === 200)
+
             .then(res => res.json())
             .then(res => {
                 this.setState({ isLoading: false });
+                this.props.router.push('/signin');
             })
+
             .catch(error => console.log(error.Message));
 
 
@@ -63,16 +65,13 @@ class RegisterPage extends React.Component {
                                 </div>
                                 <div className="panel-body">
                                     <div className="form-group">
-                                        <input className="form-control" placeholder="your name" name="userName" onChange={this.onHandlerChange} type="text" />
-                                    </div>
-                                    <div className="form-group">
                                         <input className="form-control" placeholder="yourmail@example.com" name="email" onChange={this.onHandlerChange} type="text" />
                                     </div>
                                     <div className="form-group">
                                         <input className="form-control" placeholder="Password" name="password" onChange={this.onHandlerChange} type="password" />
                                     </div>
                                     <div className="form-group">
-                                        <input className="form-control" placeholder="PasswordConfirm" name="passwordConfirm" onChange={this.onHandlerChange} type="password" />
+                                        <input className="form-control" placeholder="PasswordConfirm" name="confirmPassword" onChange={this.onHandlerChange} type="password" />
                                     </div>
                                     <input className="btn btn-lg btn-success btn-block" type="submit" value="Register" />
                                 </div>
